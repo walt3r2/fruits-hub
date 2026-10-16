@@ -1,0 +1,9 @@
+<article class="product-card" data-product-card data-name="{{ product.name|lower }}">
+    <div class="product-image">
+        <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" loading="lazy">
+        <span class="product-category">{{ product.category }}</span>
+        <button class="quick-add" type="button" data-add-to-cart data-product-id="{{ product.id }}" aria-label="Add {{ product.name }} to bag">+</button>
+    </div>
+    <div class="product-info"><div><h3>{{ product.name }}</h3><p>{{ product.description }}</p></div><strong class="product-price">KES {{ "{:,}".format(product.price) }}</strong></div>
+    <button class="add-button" type="button" data-add-to-cart data-product-id="{{ product.id }}">Add to bag <span aria-hidden="true">+</span></button>
+</article>

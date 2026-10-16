@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Our story{% endblock %}
+{% block content %}
+<section class="simple-hero">
+    <p class="eyebrow"><span class="eyebrow-dot"></span> A LITTLE ABOUT US</p>
+    <h1>Good food.<br><span>Good people.</span></h1>
+    <p>Fruit Hub is here to make everyday grocery shopping feel a little more thoughtful. We bring together fresh fruit, feel-good drinks and simple favourites for your table.</p>
+    <a class="button button-primary" href="{{ url_for('products') }}">Meet the fresh picks <span aria-hidden="true">↗</span></a>
+</section>
+<section class="values-grid section">
+    <article class="value-card"><span>01</span><h2>Fresh comes first.</h2><p>We put freshness at the heart of every basket, choosing produce that looks as good as it tastes.</p></article>
+    <article class="value-card"><span>02</span><h2>Goodness made easy.</h2><p>Finding something delicious for the week should be simple, welcoming and convenient.</p></article>
+    <article class="value-card"><span>03</span><h2>Care in every detail.</h2><p>From choosing your favourites to making checkout straightforward, we want every visit to feel good.</p></article>
+</section>
+{% endblock %}

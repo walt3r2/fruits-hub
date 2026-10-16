@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Sign in to Fruit Hub{% endblock %}
+{% block content %}
+<section class="auth-section">
+    <div class="auth-image"><img src="{{ url_for('static', filename='images/cutout.jpg') }}" alt="A fresh selection of fruit"><div class="auth-image-copy"><p class="eyebrow">GOOD TO HAVE YOU BACK</p><h2>Your next<br>fresh find is<br>waiting.</h2></div></div>
+    <div class="auth-panel"><p class="eyebrow">WELCOME BACK</p><h1>Let's get you<br>back to good.</h1><p class="auth-intro">Sign in to pick up right where you left off.</p>
+        <form class="auth-form" method="post" action="{{ url_for('login') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="next" value="{{ next_url }}">
+            <label for="login-email">Email address</label><input id="login-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <label for="login-password">Password</label><input id="login-password" name="password" type="password" autocomplete="current-password" required>
+            <button class="button button-primary auth-submit" type="submit">Sign in <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="auth-switch">New around here? <a href="{{ url_for('signup') }}">Create an account</a></p>
+    </div>
+</section>
+{% endblock %}

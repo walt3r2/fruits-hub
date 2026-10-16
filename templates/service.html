@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Our promise{% endblock %}
+{% block content %}
+<section class="simple-hero">
+    <p class="eyebrow"><span class="eyebrow-dot"></span> OUR PROMISE TO YOU</p>
+    <h1>A fresher way<br>to <span>shop every day.</span></h1>
+    <p>Thoughtful produce, convenient online ordering and a secure M-Pesa checkout, all in one friendly place.</p>
+    <a class="button button-primary" href="{{ url_for('products') }}">Browse the shop <span aria-hidden="true">↗</span></a>
+</section>
+<section class="promise-grid section">
+    <article><span class="benefit-icon">✳</span><h2>Fresh picks</h2><p>A colourful range of fruit and feel-good drinks to make the everyday a little brighter.</p></article>
+    <article><span class="benefit-icon">⌂</span><h2>Easy ordering</h2><p>Build your bag, check your order total and complete payment from your phone with M-Pesa.</p></article>
+    <article><span class="benefit-icon">♡</span><h2>Your own account</h2><p>Sign in to keep track of your orders and come back to your favourites whenever you like.</p></article>
+</section>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Session expired | Fruit Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="simple-hero">
+        <p class="eyebrow">A QUICK RESET</p>
+        <h1>Your session<br><span>has expired.</span></h1>
+        <p>Please return to Fruit Hub and try again.</p>
+        <a class="button button-primary" href="{{ url_for('index') }}">Back to the shop <span aria-hidden="true">↗</span></a>
+    </main>
+</body>
+</html>

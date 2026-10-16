@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#f7f7ef">
+    <title>{% block title %}Fresh groceries, thoughtfully picked{% endblock %} | Fruit Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body data-authenticated="{{ 'true' if current_user else 'false' }}">
+    <div class="announcement">A little more goodness in your day <span aria-hidden="true">|</span> Fresh picks, delivered with care</div>
+    <header class="site-header">
+        <a class="brand" href="{{ url_for('index') }}" aria-label="Fruit Hub home">
+            <span class="brand-mark" aria-hidden="true">f</span>
+            <span>fruit<span class="brand-light">hub</span><small>FARM FRESH</small></span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('products') }}">Shop</a>
+            <a href="{{ url_for('about') }}">About us</a>
+            <a href="{{ url_for('service') }}">Our Service</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+        <div class="header-actions">
+            {% if current_user %}
+                <a class="account-link" href="{{ url_for('account') }}"><span class="account-avatar" aria-hidden="true">{{ current_user.name[0]|upper }}</span><span class="account-name">{{ current_user.name.split()[0] }}</span></a>
+            {% else %}
+                <a class="account-link" href="{{ url_for('login') }}">Sign in</a>
+            {% endif %}
+            <button class="cart-trigger" type="button" data-open-cart aria-label="Open shopping bag">
+                Bag <span class="cart-count" data-cart-count>0</span>
+            </button>
+        </div>
+        <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-stack" role="status">
+                {% for category, message in messages %}
+                    <p class="flash-message flash-{{ category }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <footer class="site-footer">
+        <a class="brand footer-brand" href="{{ url_for('index') }}"><span class="brand-mark" aria-hidden="true">f</span><span>fruit<span class="brand-light">hub</span><small>FRESH FROM OUR FARM</small></span></a>
+        <p>Good food, good days. Fresh fruit and drinks, picked with care in Kenya.</p>
+        <span>© 2026 Fruit Hub</span>
+    </footer>
+
+    <div class="cart-backdrop" data-cart-backdrop></div>
+    <aside class="cart-drawer" data-cart-drawer aria-label="Shopping bag" aria-hidden="true">
+        <div class="cart-heading"><div><p class="eyebrow">YOUR PICKS</p><h2>Your bag <span data-cart-count>0</span></h2></div><button class="icon-button" type="button" data-close-cart aria-label="Close shopping bag">×</button></div>
+        <div class="cart-items" data-cart-items><p class="empty-cart">Your bag is waiting for something fresh.</p></div>
+        <div class="cart-summary">
+            <div class="cart-total"><span>Subtotal</span><strong data-cart-total>KES 0</strong></div>
+            <p class="cart-note">Delivery calculated when we confirm your order.</p>
+            <form class="checkout-form" data-checkout-form>
+                <label for="checkout-phone">M-Pesa phone number</label>
+                <input id="checkout-phone" name="phone" type="tel" placeholder="0712 345 678" autocomplete="tel" required>
+                <button class="button button-primary checkout-button" type="submit">Pay with M-Pesa <span aria-hidden="true">↗</span></button>
+                <p class="checkout-message" data-checkout-message role="status"></p>
+            </form>
+        </div>
+    </aside>
+    <script>window.productCatalog = {{ product_catalog|tojson }};</script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Create your Fruit Hub account{% endblock %}
+{% block content %}
+<section class="auth-section">
+    <div class="auth-image"><img src="{{ url_for('static', filename='images/picnic.jpg') }}" alt="Fresh fruit ready for a picnic"><div class="auth-image-copy"><p class="eyebrow">A FRESH START</p><h2>Good things<br>are closer than<br>you think.</h2></div></div>
+    <div class="auth-panel"><p class="eyebrow">WELCOME TO FRUIT HUB</p><h1>Make yourself<br>at home.</h1><p class="auth-intro">Create an account for a smoother, fresher kind of grocery run.</p>
+        <form class="auth-form" method="post" action="{{ url_for('signup') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label for="signup-name">Your name</label><input id="signup-name" name="name" type="text" autocomplete="name" placeholder="e.g. Amina Wanjiku" maxlength="100" required>
+            <label for="signup-email">Email address</label><input id="signup-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <label for="signup-password">Password</label><input id="signup-password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required>
+            <button class="button button-primary auth-submit" type="submit">Create account <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="auth-switch">Already part of the family? <a href="{{ url_for('login') }}">Sign in</a></p>
+    </div>
+</section>
+{% endblock %}

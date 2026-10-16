@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Shop fresh groceries{% endblock %}
+{% block content %}
+<section class="shop-hero">
+    <div><p class="eyebrow"><span class="eyebrow-dot"></span> THE GOOD STUFF, ALL IN ONE PLACE</p><h1>Your fresh<br>finds <span>start here.</span></h1><p>Browse the market's best and bring a little goodness home.</p></div>
+    <div class="shop-hero-image"><img src="{{ url_for('static', filename='images/various.jpg') }}" alt="Fresh fruit picked for your table"></div>
+</section>
+<section class="section shop-section">
+    <div class="section-heading shop-heading"><div><p class="eyebrow">PICKED FOR YOUR EVERYDAY</p><h2>Shop the good stuff</h2></div><label class="search-box"><span aria-hidden="true">⌕</span><input type="search" placeholder="Find a favourite..." aria-label="Search products" data-product-search></label></div>
+    <div class="product-grid" data-product-grid>{% for product in products %}{% include "_product_card.html" %}{% endfor %}</div>
+    <p class="no-results" data-no-results hidden>No fresh finds match that search just yet.</p>
+</section>
+{% endblock %}

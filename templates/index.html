@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Fresh groceries for brighter days{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> GOOD THINGS GROW HERE</p>
+        <h1>Fresh finds.<br><span>Feel-good</span> days.</h1>
+        <p class="hero-description">The good stuff, picked with care and brought right to your door. Shop fresh fruit, refreshing drinks and feel-good favourites.</p>
+        <div class="hero-actions"><a class="button button-primary" href="{{ url_for('products') }}">Shop the fresh picks <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ url_for('about') }}">A little about us <span aria-hidden="true">→</span></a></div>
+        <div class="hero-proof"><div class="proof-avatars" aria-hidden="true"><span>✿</span><span></span><span>❋</span></div><span><strong>Loved by local shoppers</strong><br>Freshness you can feel good about</span></div>
+    </div>
+    <div class="hero-art">
+        <div class="hero-image-wrap"><img src="{{ url_for('static', filename='images/many.jpg') }}" alt="A colourful selection of fresh fruit"></div>
+        <div class="hero-sticker"><span>Picked<br>with love</span><b aria-hidden="true"></b></div>
+        <div class="hero-caption"><span class="caption-dot"></span> FRESH, LOCAL & READY FOR YOU</div>
+    </div>
+    <div class="hero-decoration hero-decoration-one" aria-hidden="true"></div>
+    <div class="hero-decoration hero-decoration-two" aria-hidden="true">✿</div>
+</section>
+<section class="benefits-strip" aria-label="Our benefits">
+    <div><span class="benefit-icon">✳</span><span><strong>Picked fresh</strong><small>Goodness in every basket</small></span></div>
+    <div><span class="benefit-icon">⌂</span><span><strong>Right to your door</strong><small>Convenient local delivery</small></span></div>
+    <div><span class="benefit-icon">♡</span><span><strong>Made for real life</strong><small>Everyday good, made easy</small></span></div>
+</section>
+<section class="section featured-section">
+    <div class="section-heading"><div><p class="eyebrow">A FEW OF OUR FAVOURITES</p><h2>Fresh picks for you</h2></div><a class="text-link" href="{{ url_for('products') }}">See everything <span aria-hidden="true">→</span></a></div>
+    <div class="product-grid">{% for product in products %}{% include "_product_card.html" %}{% endfor %}</div>
+</section>
+<section class="story-banner">
+    <div class="story-image"><img src="{{ url_for('static', filename='images/basket.jpg') }}" alt="A basket filled with fresh produce"></div>
+    <div class="story-copy"><p class="eyebrow">A LITTLE MORE GOODNESS</p><h2>Good food brings<br>good days.</h2><p>We believe shopping for the good stuff should feel simple. So we bring fresh produce and everyday favourites together, with a little more care in every step.</p><a class="button button-light" href="{{ url_for('about') }}">Get to know us <span aria-hidden="true">↗</span></a></div>
+</section>
+{% endblock %}

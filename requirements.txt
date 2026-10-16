@@ -1,0 +1,3 @@
+flask
+flask-wtf
+requests>=2.32.3
